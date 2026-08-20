@@ -3,3 +3,5 @@ Thumbs.db
 desktop.ini
 *.tmp
 
+# scratch preview, not part of the site
+_border-preview.html

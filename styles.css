@@ -6,12 +6,35 @@
 :root {
   /* --- colour --- */
   --bg:          #fbfaf7;   /* page background        */
-  --bg-soft:     #f3f1eb;   /* cards, code, dividers  */
-  --ink:         #1c1b19;   /* body text              */
-  --ink-soft:    #5f5b54;   /* captions, metadata     */
-  --rule:        #ddd8cf;   /* hairlines, borders     */
-  --accent:      #6b4fa0;   /* links, marks, emphasis */
-  --accent-soft: #ece5f7;   /* accent backgrounds     */
+  --bg-soft:     #fbeef2;   /* cards: light pink      */
+  --panel:       #fdf3f6;   /* hero panel: lighter pink */
+
+  /* Pastel box fills. Light enough that every text token clears AA on them,
+     so any of these is safe behind body copy. Apply with .tint-* below. */
+  --surface-pink:   #fbeef2;
+  --surface-teal:   #e6f3f1;
+  --surface-yellow: #fdf4de;
+  --surface-blue:   #eaf1f5;
+  --ink:         #16202b;   /* body text (navy-black) */
+  --ink-soft:    #55616f;   /* captions, metadata     */
+  --rule:        #e8d8de;   /* hairlines, borders     */
+  --accent:      #1b3a5c;   /* navy: headings, links, name */
+  --accent-soft: #fbe9ef;   /* pink fill behind tags and the hero art */
+  --accent-2:    #0f6675;   /* deep teal: dates, metadata, mono labels */
+  --rule-art:    #e8adc0;   /* the pink line beside the header drawings */
+
+  /* --- hand-drawn palette (Azalea Design Co.) ---
+     These match the illustrations in assets/drawings/. They are DECORATIVE
+     fills only: none of them reach 4.5:1 against --bg, so never use one as a
+     text colour. --accent and --accent-2 below are deepened versions that pass. */
+  --rose:          #a62a5a;   /* deepened azalea; this is --accent */
+  --navy:          #1b3a5c;   /* deep anchor tone; this is --accent-2 */
+  --ice-castle:    #b6d5d8;
+  --buttercup:     #fdd888;
+  --bermuda:       #78d1c4;
+  --azalea:        #fd7899;
+  --candyfloss:    #fceeee;
+  --tropical-teal: #14889c;
 
   /* --- type --- */
   --font-body:  "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
@@ -29,13 +52,20 @@
 /* Dark mode: only the colours are redefined. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg:          #14140f;
-    --bg-soft:     #1e1e19;
-    --ink:         #ece9e2;
-    --ink-soft:    #a49f95;
-    --rule:        #33322b;
-    --accent:      #b79be8;
-    --accent-soft: #2a2338;
+    --bg:          #101720;
+    --bg-soft:     #231a22;
+    --panel:       #1e1720;
+    --surface-pink:   #241a20;
+    --surface-teal:   #16262a;
+    --surface-yellow: #262010;
+    --surface-blue:   #182430;
+    --ink:         #e6ecf2;
+    --ink-soft:    #9aa7b4;
+    --rule:        #312a33;
+    --accent:      #9cc4e4;
+    --accent-soft: #3a1f2c;
+    --accent-2:    #7fc2ce;
+    --rule-art:    #6b4152;
   }
 }
 
@@ -74,9 +104,9 @@ a:hover { border-bottom-color: var(--accent); }
    HEADER + NAV
    ============================================================ */
 .site-head {
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 0;          /* the .head-rule row below IS the bottom edge */
   margin-bottom: 3rem;
-  padding: 1.5rem 0 1.1rem;
+  padding: 1.5rem 0 0;
 }
 .site-head .wrap { padding-bottom: 0; }
 .site-head-inner {
@@ -91,7 +121,7 @@ a:hover { border-bottom-color: var(--accent); }
   font-size: 1.15rem;
   font-weight: 600;
   letter-spacing: .01em;
-  color: var(--ink);
+  color: var(--accent);
   border: 0;
 }
 nav.site-nav { display: flex; gap: 1.35rem; flex-wrap: wrap; }
@@ -108,7 +138,17 @@ nav.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: va
 /* ============================================================
    HERO  (home page)
    ============================================================ */
-.hero { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3.5rem; }
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1.8rem 1.75rem 1.7rem;
+  align-items: start;
+}
 @media (min-width: 42rem) { .hero { grid-template-columns: 1fr 12rem; } }
 
 .hero h1 {
@@ -147,7 +187,7 @@ h2 {
   font-size: .82rem;
   text-transform: uppercase;
   letter-spacing: .13em;
-  color: var(--ink-soft);
+  color: var(--accent);
   font-weight: 600;
   margin: 0 0 1.1rem;
   padding-bottom: .5rem;
@@ -170,7 +210,7 @@ h3 {
 .entry:last-child { margin-bottom: 0; }
 .entry .meta {
   font-size: .85rem;
-  color: var(--ink-soft);
+  color: var(--accent-2);
   font-family: var(--font-mono);
   margin: 0 0 .5rem;
 }
@@ -208,7 +248,118 @@ h3 {
 
 .talk-list { padding-left: 1.1rem; }
 .talk-list li { margin-bottom: .4rem; }
-.talk-list .year { font-family: var(--font-mono); font-size: .85rem; color: var(--ink-soft); }
+.talk-list .year { font-family: var(--font-mono); font-size: .85rem; color: var(--accent-2); }
+
+/* ============================================================
+   HAND-DRAWN DECORATION
+   Illustrations live in assets/drawings/ as transparent PNGs so they sit on
+   either theme with no white box behind them. They are purely decorative and
+   carry alt="" so screen readers skip them instead of announcing noise.
+   ============================================================ */
+.hero-art {
+  display: block;
+  width: 100%;
+  max-width: 11rem;
+  height: auto;
+  justify-self: center;
+  box-sizing: border-box;
+  background: var(--surface-teal);   /* teal frame inside the pink hero panel */
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: .85rem;
+}
+
+/* Small illustration inside a research card on the home page. */
+.card.with-art {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+.card-body { min-width: 0; }
+.card-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: .2rem;
+}
+
+/* Pastel box fills, for putting individual elements in their own coloured box.
+   Pair with .card (or any padded block) to change only the fill. */
+.tint-pink   { background: var(--surface-pink); }
+.tint-teal   { background: var(--surface-teal); }
+.tint-yellow { background: var(--surface-yellow); }
+.tint-blue   { background: var(--surface-blue); }
+
+/* The header's bottom edge: the six drawings once, left to right, with a
+   hairline carrying on to the right margin. Not a repeating pattern — the row
+   appears a single time per page. */
+.head-rule {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .65rem 0 .8rem;
+}
+.head-rule img {
+  flex: none;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 2.5rem;    /* box each drawing so wide and tall ones look even */
+  max-height: 1.75rem;
+}
+.head-rule::before,
+.head-rule::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--rule-art);
+}
+.head-rule::before { margin-right: .55rem; }
+.head-rule::after  { margin-left:  .55rem; }
+
+/* One small drawing per section, out in the left margin so it never
+   interrupts the text. Falls inline when the margin runs out. */
+h2 { position: relative; }
+.h2-mark {
+  position: absolute;
+  left: -2.6rem;
+  top: 50%;
+  transform: translateY(-58%);
+  width: auto;
+  height: auto;
+  max-width: 1.8rem;
+  max-height: 1.8rem;
+}
+@media (max-width: 52rem) {
+  .h2-mark {
+    position: static;
+    transform: none;
+    display: inline-block;
+    max-width: 1.25rem;
+    max-height: 1.25rem;
+    vertical-align: -.3rem;
+    margin-right: .45rem;
+  }
+}
+@media (max-width: 26rem) {
+  .head-rule { gap: .35rem; }
+  .head-rule img { max-width: 1.9rem; max-height: 1.35rem; }
+}
+
+/* Illustration set beside a prose entry on the research page. */
+.entry-art {
+  float: right;
+  width: 6rem;
+  height: auto;
+  margin: 0 0 .85rem 1.35rem;
+}
+.entry::after { content: ""; display: block; clear: both; }
+
+@media (max-width: 30rem) {
+  .card.with-art { grid-template-columns: 3.25rem 1fr; gap: .9rem; }
+  .entry-art { width: 4.25rem; margin-left: 1rem; }
+}
 
 /* ============================================================
    CV ROWS
@@ -228,7 +379,7 @@ h3 {
 .cv-row .when {
   font-family: var(--font-mono);
   font-size: .82rem;
-  color: var(--ink-soft);
+  color: var(--accent-2);
   padding-top: .22rem;
 }
 .cv-row .what strong { font-weight: 600; }
@@ -255,6 +406,7 @@ h3 {
    ============================================================ */
 @media print {
   nav.site-nav, .site-foot { display: none; }
+  .head-rule, .h2-mark, .hero-art { display: none; }  /* decoration off on paper */
   body { background: #fff; color: #000; font-size: 10.5pt; }
   a { color: #000; border: 0; }
 }
