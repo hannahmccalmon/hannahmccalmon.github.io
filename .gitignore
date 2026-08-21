@@ -9,3 +9,10 @@ _border-preview.html
 # Notes and working documents. The site is HTML/CSS only, so no Markdown file
 # is ever part of what gets served -- these stay local.
 *.md
+
+# Large source media kept locally only. The site serves the derived files in
+# assets/; these originals are 12 MB and never reach the browser.
+inputs/giphy.gif
+inputs/octo gif.gif
+inputs/200.gif
+inputs/ga1_lrg.jpg
