@@ -5,3 +5,7 @@ desktop.ini
 
 # scratch preview, not part of the site
 _border-preview.html
+
+# Notes and working documents. The site is HTML/CSS only, so no Markdown file
+# is ever part of what gets served -- these stay local.
+*.md

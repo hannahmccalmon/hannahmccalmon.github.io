@@ -15,6 +15,16 @@
   --surface-teal:   #e6f3f1;
   --surface-yellow: #fdf4de;
   --surface-blue:   #eaf1f5;
+  --surface-green:  #ebf4e6;
+
+  /* Box outlines: a deeper version of each fill above, so a teal box gets a
+     teal edge rather than the default pink hairline. Pair --edge-* with the
+     matching --surface-*. */
+  --edge-pink:   #e6a2b8;
+  --edge-teal:   #9fd1c9;
+  --edge-yellow: #ecc873;
+  --edge-blue:   #9ebfd1;
+  --edge-green:  #aed49b;
   --ink:         #16202b;   /* body text (navy-black) */
   --ink-soft:    #55616f;   /* captions, metadata     */
   --rule:        #e8d8de;   /* hairlines, borders     */
@@ -59,6 +69,12 @@
     --surface-teal:   #16262a;
     --surface-yellow: #262010;
     --surface-blue:   #182430;
+    --surface-green:  #1b2417;
+    --edge-pink:   #56374a;
+    --edge-teal:   #2a5f6b;
+    --edge-yellow: #6b5424;
+    --edge-blue:   #2b4a68;
+    --edge-green:  #456336;
     --ink:         #e6ecf2;
     --ink-soft:    #9aa7b4;
     --rule:        #312a33;
@@ -144,7 +160,7 @@ nav.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: va
   gap: 2rem;
   margin-bottom: 3.5rem;
   background: var(--panel);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--edge-pink);
   border-radius: var(--radius);
   padding: 1.8rem 1.75rem 1.7rem;
   align-items: start;
@@ -168,7 +184,7 @@ nav.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: va
   object-fit: cover;
   border-radius: var(--radius);
   background: var(--bg-soft);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--edge-pink);
 }
 /* Placeholder shown until assets/portrait.jpg exists. Delete once added. */
 .portrait-placeholder {
@@ -208,17 +224,19 @@ h3 {
    ============================================================ */
 .entry { margin-bottom: 2rem; }
 .entry:last-child { margin-bottom: 0; }
-.entry .meta {
+.entry .meta,
+.card .meta {
   font-size: .85rem;
   color: var(--accent-2);
   font-family: var(--font-mono);
   margin: 0 0 .5rem;
 }
-.entry p { margin: .5rem 0; }
+.entry p,
+.card p { margin: .5rem 0; }
 
 .card {
   background: var(--bg-soft);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--edge-pink);
   border-radius: var(--radius);
   padding: 1.25rem 1.4rem;
   margin-bottom: 1rem;
@@ -229,7 +247,7 @@ h3 {
 /* Publication entries */
 .pub { margin-bottom: 1.6rem; padding-left: 1rem; border-left: 2px solid var(--accent); }
 .pub .authors { margin: 0 0 .15rem; }
-.pub .authors .me { font-weight: 600; }
+.pub .authors .me { font-weight: 700; }
 .pub .venue { margin: 0; color: var(--ink-soft); font-size: .95rem; font-style: italic; }
 .pub .links { margin: .4rem 0 0; font-size: .88rem; font-family: var(--font-mono); }
 .pub .links a { margin-right: .9rem; }
@@ -264,7 +282,7 @@ h3 {
   justify-self: center;
   box-sizing: border-box;
   background: var(--surface-teal);   /* teal frame inside the pink hero panel */
-  border: 1px solid var(--rule);
+  border: 1px solid var(--edge-teal);
   border-radius: var(--radius);
   padding: .85rem;
 }
@@ -286,10 +304,11 @@ h3 {
 
 /* Pastel box fills, for putting individual elements in their own coloured box.
    Pair with .card (or any padded block) to change only the fill. */
-.tint-pink   { background: var(--surface-pink); }
-.tint-teal   { background: var(--surface-teal); }
-.tint-yellow { background: var(--surface-yellow); }
-.tint-blue   { background: var(--surface-blue); }
+.tint-pink   { background: var(--surface-pink);   border-color: var(--edge-pink); }
+.tint-teal   { background: var(--surface-teal);   border-color: var(--edge-teal); }
+.tint-yellow { background: var(--surface-yellow); border-color: var(--edge-yellow); }
+.tint-green  { background: var(--surface-green);  border-color: var(--edge-green); }
+.tint-blue   { background: var(--surface-blue);   border-color: var(--edge-blue); }
 
 /* The header's bottom edge: the six drawings once, left to right, with a
    hairline carrying on to the right margin. Not a repeating pattern — the row
@@ -354,7 +373,8 @@ h2 { position: relative; }
   height: auto;
   margin: 0 0 .85rem 1.35rem;
 }
-.entry::after { content: ""; display: block; clear: both; }
+.entry::after,
+.card::after { content: ""; display: block; clear: both; }
 
 @media (max-width: 30rem) {
   .card.with-art { grid-template-columns: 3.25rem 1fr; gap: .9rem; }

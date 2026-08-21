@@ -1,4 +1,3 @@
-Placeholder. Replace with:
-  portrait.jpg      - square-ish photo for the home page
-  McCalmon_CV.pdf   - downloadable CV linked from cv.html
-  favicon.png       - 32x32 browser tab icon
+portrait.jpg      - present: hero photo on the home page (900x900)
+favicon.png       - present: 64x64 browser tab icon, the brain drawing
+McCalmon_CV.pdf   - still missing; downloadable CV linked from cv.html
