@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /inputs/
+
+Sitemap: https://hannahmccalmon.github.io/sitemap.xml

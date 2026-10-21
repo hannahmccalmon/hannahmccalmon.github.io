@@ -498,8 +498,17 @@ h2 { position: relative; }
 /* ============================================================
    PRINT
    ============================================================ */
+/* Elements that exist only for the printed/PDF CV. */
+.print-only { display: none; }
+
 @media print {
-  nav.site-nav, .site-foot { display: none; }
+  @page { size: letter; margin: 0.75in; }
+  nav.site-nav, .site-foot, .screen-only { display: none; }
+  .print-only { display: block; margin: 0 0 1.2rem; }
+  .site-head { padding-top: 0; }
+  section { break-inside: auto; }
+  .cv-row { break-inside: avoid; }
+  h2 { break-after: avoid; }
   .head-rule, .h2-mark, .hero-art { display: none; }  /* decoration off on paper */
   body { background: #fff; color: #000; font-size: 10.5pt; }
   a { color: #000; border: 0; }

@@ -1,5 +1,7 @@
 portrait.jpg                   - hero photo on the home page (900x900)
-favicon.png                    - 64x64 browser tab icon, the brain drawing
+favicon.png                    - 96x96 browser tab icon, the brain drawing. 96 because Google
+                                 only shows a site icon in search results if it is a
+                                 multiple of 48px square.
 figure-earthworm-sem.jpg       - SEM of an Eisenia hortensis head, research.html earlier-work
                                  section. Credited in the figcaption. 1200x1200 greyscale,
                                  from a 2048x2048 original on Wikimedia Commons.
@@ -24,7 +26,12 @@ figure-octopus-arm.gif         - one 320x160 GIF holding both panels: backlit vi
                                  each frame, which bled white across the black mask panel.
                                  Do not "fix" the brightness with a tone curve -- the source
                                  grading is correct and clips at the top on purpose.
-McCalmon_CV.pdf                - still missing; downloadable CV linked from cv.html
+McCalmon_CV.pdf                - downloadable CV linked from cv.html. Generated from cv.html
+                                 itself using the @media print rules in styles.css, via
+                                 headless Chrome:
+                                   chrome --headless --no-pdf-header-footer \
+                                     --print-to-pdf=assets/McCalmon_CV.pdf cv.html
+                                 Rerun after editing cv.html.
 
 Both octopus GIFs would be roughly a quarter the size as MP4/WebM if ffmpeg becomes
 available. The earlier micro-CT rotation still and GIF were removed when these replaced
